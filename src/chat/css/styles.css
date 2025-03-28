@@ -1,0 +1,47 @@
+body {
+    margin: 0; /* Убираем отступы */
+    padding: 0; /* Убираем паддинги */
+    font-family: Arial, sans-serif;
+	isplay: flex;
+    height: 100vh; /* Задаем высоту всей страницы */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+	
+}
+
+/* Контейнер для сообщений ( % экрана) */
+.messages-container {
+    background-color: #f8f9fa;
+    width: 100%; /*  ширины экрана */
+    height: 100%; /*  высоты экрана */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* Сообщения */
+.alert {
+    padding: 5px;
+    font-size: 16px;
+    background: none;
+    border: none;
+    color: black;
+    text-align: left;
+}
+
+/* Контейнер для ввода (внизу, 80% ширины) */
+.input-container {
+    width: 100%;
+    padding: 10px;
+    background: white;
+    text-align: center;
+	
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+

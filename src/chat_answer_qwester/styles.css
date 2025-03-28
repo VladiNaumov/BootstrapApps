@@ -1,0 +1,61 @@
+/* Общие стили для тела страницы */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Контейнер для заголовка, закрепляем его наверху */
+.header-container {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    text-align: center;
+}
+
+/* Контейнер для сообщений */
+.messages-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Контейнер для ввода */
+.input-area {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #fff;
+    border-top: 1px solid #ccc;
+    position: sticky;
+    bottom: 0;
+}
+
+/* Поле ввода текста */
+.input-area input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Кнопка отправки */
+.input-area button {
+    padding: 8px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Кнопка отправки при наведении */
+.input-area button:hover {
+    background: #0056b3;
+}
