@@ -21,13 +21,13 @@
         <!-- Контейнер для ввода текста -->
         <div class="input-area p-3 border-top">
             <div class="input-group">
-                <input type="text" class="form-control" id="userInput" placeholder="Введите слово...">
+                <input type="text" class="form-control" id="userInput" placeholder="Введите слово..." aria-label="Введите слово для теста">
                 <button class="btn btn-primary" onclick="sendAnswer()">Отправить</button>
             </div>
+            <button class="btn btn-secondary mt-2 w-100" onclick="restartTest()" id="restartBtn" style="display: none;">Начать заново</button>
         </div>
     </div>
 
     <script src="script.js" defer></script>
 </body>
 </html>
-

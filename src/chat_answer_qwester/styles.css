@@ -26,9 +26,40 @@ body {
     padding: 10px;
 }
 
+/* Стили для сообщений */
+.message {
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.bot {
+    background: #007bff;
+    color: white;
+    text-align: left;
+    margin-right: auto; /* Слева */
+}
+
+.user {
+    background: #e9ecef;
+    color: black;
+    text-align: right;
+    margin-left: auto; /* Справа */
+}
+
+/* Анимация появления сообщений */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
 /* Контейнер для ввода */
 .input-area {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     padding: 10px;
     background: #fff;
@@ -45,6 +76,12 @@ body {
     border-radius: 5px;
 }
 
+.input-area input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 /* Кнопка отправки */
 .input-area button {
     padding: 8px 15px;
@@ -55,7 +92,21 @@ body {
     cursor: pointer;
 }
 
-/* Кнопка отправки при наведении */
 .input-area button:hover {
     background: #0056b3;
+}
+
+.input-area button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 576px) {
+    .input-area .input-group {
+        flex-direction: column;
+    }
+    .input-area input, .input-area button {
+        width: 100%;
+    }
 }

@@ -3,12 +3,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const questions = [
         { sentence: "I ___ to school every day.", answer: "go" },
         { sentence: "She ___ a book yesterday.", answer: "read" },
+        { sentence: "They ___ playing football now.", answer: "are" },
+		{ sentence: "I ___ to school every day.", answer: "go" },
+        { sentence: "She ___ a book yesterday.", answer: "read" },
+        { sentence: "They ___ playing football now.", answer: "are" },
+		{ sentence: "I ___ to school every day.", answer: "go" },
+        { sentence: "She ___ a book yesterday.", answer: "read" },
         { sentence: "They ___ playing football now.", answer: "are" }
     ];
 
     let currentQuestion = 0;
+    let score = 0;
     const chatBox = document.getElementById("chatBox");
     const userInput = document.getElementById("userInput");
+    const restartBtn = document.getElementById("restartBtn");
+
+    // Проверка на наличие элементов
+    if (!chatBox || !userInput || !restartBtn) {
+        console.error("Не удалось найти необходимые элементы DOM");
+        return;
+    }
 
     // Показать первый вопрос
     addMessage(questions[currentQuestion].sentence, "bot");
@@ -19,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
         message.classList.add("message", sender);
         message.textContent = text;
         chatBox.appendChild(message);
-        chatBox.scrollTop = chatBox.scrollHeight; // Прокрутка вниз к новым сообщениям
+        // Прокрутка к последнему сообщению
+        message.scrollIntoView({ behavior: "smooth", block: "end" });
     }
 
     // Функция для отправки ответа
@@ -34,8 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Проверка правильности ответа
         const correctAnswer = questions[currentQuestion].answer;
         if (answer === correctAnswer) {
+            score++;
             setTimeout(() => {
-                addMessage("Правильно! ✅", "bot");
+                addMessage(`Правильно! ✅ Твой счёт: ${score}`, "bot");
                 nextQuestion();
             }, 500);
         } else {
@@ -52,16 +68,32 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentQuestion < questions.length) {
             setTimeout(() => {
                 addMessage(questions[currentQuestion].sentence, "bot");
-            }, 1000); // Задержка перед следующим вопросом
+            }, 1000);
         } else {
             setTimeout(() => {
-                addMessage("Тест завершён! Спасибо за участие! 🎉", "bot");
+                addMessage(`Тест завершён! Твой счёт: ${score}/${questions.length} 🎉`, "bot");
+                restartBtn.style.display = "block"; // Показать кнопку перезапуска
+                userInput.disabled = true; // Отключить ввод
             }, 1000);
         }
+    }
+
+    // Функция для перезапуска теста
+    function restartTest() {
+        currentQuestion = 0;
+        score = 0;
+        chatBox.innerHTML = "";
+        userInput.disabled = false;
+        restartBtn.style.display = "none";
+        addMessage(questions[currentQuestion].sentence, "bot");
     }
 
     // Отправка по Enter
     userInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") sendAnswer();
     });
+
+    // Глобальная функция для вызова из HTML
+    window.sendAnswer = sendAnswer;
+    window.restartTest = restartTest;
 });
